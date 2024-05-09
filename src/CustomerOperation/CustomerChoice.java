@@ -21,7 +21,7 @@ public class CustomerChoice {
 			CartClass.addProductToCart(customerId);
 			break;
 		case 3:
-			System.out.println(" In process");
+			PlaceOrder.getorder(customerId);
 			break;
 		case 4:
 			System.out.println(" In process");

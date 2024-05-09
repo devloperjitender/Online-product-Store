@@ -66,17 +66,17 @@ public class CustomerDetails {
 				System.out.println("Enter the customerId");
 				int customerId= Integer.parseInt(sc.nextLine());
 				System.out.println("Enter the Password !!");
-				String custPassword= sc.nextLine();
+				String customerPassword= sc.nextLine();
 				//Loading Data
 				ps2.setInt(1, customerId);
-				ps2.setString(2, custPassword);
+				ps2.setString(2, customerPassword);
 				k=ps2.executeUpdate();
 				if(k>0) {
 					System.out.println("****User Login Successfully****");
 					CustomerChoice.customerChoice(customerId);
 				}
 				else {
-					System.out.println("Invalid CustomerId/password Logon Denied");
+					System.out.println("Invalid CustomerId/password Login Denied");
 				}
 				break;
 	}

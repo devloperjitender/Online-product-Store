@@ -69,7 +69,7 @@ public class AdminClass {
 				  String userName= sc.nextLine();
 				  System.out.println("Enter the Password");
 				  String passWord= sc.nextLine();
-				  // loading data to prepardStatement
+				  // loading data to preparedStatement
 				 ps2.setString(1, userName);
 				 ps2.setString(2, passWord);
 				ResultSet rs= ps2.executeQuery();
