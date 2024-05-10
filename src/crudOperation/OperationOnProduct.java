@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class OperationOnProduct {
 	
+	
+	// by this method Admin can Perform curd operation
 	public static void  selectBasedOnChoice() throws ClassNotFoundException, SQLException {
 		Scanner sc= new Scanner(System.in);
 		while(true) {
@@ -15,14 +17,18 @@ public class OperationOnProduct {
 			 
 			switch(choice) {
 			case 1:
+				//Admin can see Add product
 				AddAndViewProduct.addProduct();
 				break;
+				//Admin can view All Product(id,name,price,companyName...)
 			case 2:
 				AddAndViewProduct.viewProductDetails();
 				break;
+				//Admin can update the Product(price,name,quantity,company....)
 			case 3:
 				ProductUpdation.updateProductBasedOnChoice();
 				break;
+				//Admin can delete the product
 			case 4:
 				DeleteOperation.deleteProductDetails();
 				break;

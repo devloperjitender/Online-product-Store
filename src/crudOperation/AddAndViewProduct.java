@@ -8,9 +8,9 @@ import DataBaseInformation.DbConnection;
 public class AddAndViewProduct {
 	
 	static Scanner sc= new Scanner(System.in);
+	
+	//with the help of this function admin can add Product
 	public static void  addProduct() throws ClassNotFoundException, SQLException {
-		
-		
 		
 		Connection con= DbConnection.getConnection();
 		PreparedStatement ps1= con.prepareStatement("Insert into ProductDetails values(?,?,?,?,?,?)");
@@ -43,6 +43,10 @@ public class AddAndViewProduct {
 		}
 	}
 	
+	/*  **********************************************************************************************************/
+	
+	// With the help of this function Admin can view the product on diffrent functionality
+	
 	public static void viewProductDetails() throws SQLException, ClassNotFoundException {
 		Connection con= DbConnection.getConnection();
 		PreparedStatement ps1= con.prepareStatement("Select * from ProductDetails order by product_id ASC");
@@ -60,6 +64,7 @@ public class AddAndViewProduct {
 			
 			System.out.println();
 			switch(choice) {
+			//Admin can view All The product 
 			case 1:
 				ResultSet rs =ps1.executeQuery();
 				ResultSetMetaData metaData= rs.getMetaData();
@@ -78,6 +83,7 @@ public class AddAndViewProduct {
 	                System.out.println();
 	            }
 				break;
+				//Admin can view the product based on product_id
 			case 2:
 				 System.out.println("Enter the Product Id");
 				 String productId= sc.nextLine();
@@ -86,10 +92,12 @@ public class AddAndViewProduct {
 			
 			metaData=	rs.getMetaData();
 			columnCount= metaData.getColumnCount();
+			//print table header(it will print the column name of the table )
 			for(int i=1;i<=columnCount;i++) {
 				System.out.printf("%-20s", metaData.getColumnName(i));
 			}
 			System.out.println();
+			// Print table data(it will print the table data)
 				while(rs.next()) {
 					for(int i=1;i<=columnCount;i++) {
 						System.out.printf("%-20s", rs.getString(i));
@@ -99,6 +107,7 @@ public class AddAndViewProduct {
 				}
 			
 				break;
+			// Admin can view The product Based on Name of the product
 			case 3:
 				System.out.println("Enter the Product Name ");
 				String pName= sc.nextLine();
@@ -108,10 +117,12 @@ public class AddAndViewProduct {
 				rs=ps3.executeQuery();
 				metaData= rs.getMetaData();
 				columnCount=metaData.getColumnCount();
+				//print table header(it will print the column name of the table )
 				for(int i=1;i<=columnCount;i++) {
 					System.out.printf("%-20s", metaData.getColumnName(i));
 				}
 				System.out.println();
+				// Print table data(it will print the table data)
 					while(rs.next()) {
 						for(int i=1;i<=columnCount;i++) {
 							System.out.printf("%-20s", rs.getString(i));
@@ -120,6 +131,7 @@ public class AddAndViewProduct {
 						
 					}
 					break;
+			  // admin can view the product based on price
 			case 4:
 				System.out.println("Enter the price Of The Product");
 				double productprice= Double.parseDouble(sc.nextLine());
@@ -127,10 +139,12 @@ public class AddAndViewProduct {
 				rs= ps4.executeQuery();
 				metaData= rs.getMetaData();
 				columnCount=metaData.getColumnCount();
+				//print table header(it will print the column name of the table )
 				for(int i=1;i<=columnCount;i++) {
 					System.out.printf("%-20s", metaData.getColumnName(i));
 				}
 				System.out.println();
+				// Print table data(it will print the table data)
 					while(rs.next()) {
 						for(int i=1;i<=columnCount;i++) {
 							System.out.printf("%-20s", rs.getString(i));
@@ -139,6 +153,7 @@ public class AddAndViewProduct {
 						
 					}
 					break;
+		 // admin can view the product based on quantity
 			case 5:
 				System.out.println("Enter the Quantity of Product");
 				int productQty= Integer.parseInt(sc.nextLine());
@@ -157,6 +172,7 @@ public class AddAndViewProduct {
 			    	System.out.println();
 			    }
 			    break;
+			 // admin can view the product based on company name of the product
 			case 6:
 				System.out.println("Enter the Company Name Of the Product");
 				String companyName= sc.nextLine().toLowerCase();
@@ -177,6 +193,8 @@ public class AddAndViewProduct {
 				}
 				break;
 				
+			
+			//Admin can go back to the main page (AddProduct, viewProdcut,updateProduct....)	
 			case 7:
 				OperationOnProduct.selectBasedOnChoice();
 			       

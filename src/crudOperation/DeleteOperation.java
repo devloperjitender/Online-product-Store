@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.*;
 public class DeleteOperation {
 	 static Scanner sc= new Scanner(System.in);
-	
+	//All the deletd operation perform with this function
 	public static void deleteProductDetails() throws SQLException, ClassNotFoundException {
 		
 		Connection con= DbConnection.getConnection();
@@ -22,6 +22,7 @@ public class DeleteOperation {
 				"\n\t3.deleteProductByPrice"+"\n\t4.deleteProductByQuantity\n\t5.deleteProductByCompanyName"+"\n\t6.GoBack To Main Page");
 		int choice= Integer.parseInt(sc.nextLine());
 		switch(choice) {
+		//deleting product based on ProductId using PreparedStatement (ps1)
 		case 1 :
 			System.out.println("Enter the Id of the product you want to delete!!");
 			String productId= sc.nextLine();
@@ -34,6 +35,7 @@ public class DeleteOperation {
 				System.out.println("Invalid Product ID");
 			}
 			break;
+			//deleting product based on ProductName using PreparedStatement (ps2)
 		case 2:
 			System.out.println("Enter the Name Of the Product !!!");
 			String productName= sc.nextLine();
@@ -46,6 +48,7 @@ public class DeleteOperation {
 				System.out.println("No product find with name :="+productName);
 			}
 			break;
+			//deleting product based on ProductPrice using PreparedStatement (ps3)
 		case 3:
 			System.out.println("Enter the price of the product");
 			double productPrice= Double.parseDouble(sc.nextLine());
@@ -58,6 +61,7 @@ public class DeleteOperation {
 				System.out.println("No product Found with price :="+productPrice);
 			}
 			break;
+			//deleting product based on ProducctQuantity using PreparedStatement (ps4)
 		case 4:
 			System.out.println("Enter the Quantity of the product you want to delete");
 			int productQty= Integer.parseInt(sc.nextLine());
@@ -70,6 +74,7 @@ public class DeleteOperation {
 				System.out.println("No Prodcut having the Quantity :="+productQty);
 			}
 			break;
+			//deleting product based on Product company name  using PreparedStatement (ps5)
 		case 5:
 			System.out.println("Enter the Product Company Name :");
 			String productCompany= sc.nextLine();
@@ -82,7 +87,7 @@ public class DeleteOperation {
 				System.out.println("No product Found with Company Name :="+productCompany);
 			}
 			break;
-			
+			//Admin can go back to the main page (AddProduct, viewProdcut,updateProduct....)
 		case 6:
 			OperationOnProduct.selectBasedOnChoice();
 			break;

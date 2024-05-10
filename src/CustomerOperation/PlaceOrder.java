@@ -11,15 +11,18 @@ import java.util.*;
 import DataBaseInformation.DbConnection;
 
 public class PlaceOrder {
-	
+	// With this function customer may Place the order
 	public static void getorder(int customerId) throws SQLException {
 		Scanner sc= new Scanner(System.in);
 		Connection con= DbConnection.getConnection();
 				
-				
+				//to see the cart item
 				PreparedStatement ps1= con.prepareStatement("Select * from cart where customer_id= ?");
+				//for placing the order
 				PreparedStatement ps2= con.prepareStatement("INSERT INTO ORDER_DETAILS (product_id, customer_id, product_name, product_price, product_quantity, order_date, total_amount)VALUES (?,?,?,?,?,?,?)");
+				//After placing order We have to delete the cart item
 				PreparedStatement ps3= con.prepareStatement("DELETE FROM CART WHERE customer_id=?");
+			 // To see All  order placed by customer
 				PreparedStatement ps4= con.prepareStatement("SELECT * FROM ORDER_DETAILS WHERE customer_id=?");
 				ps1.setInt(1, customerId);
 			

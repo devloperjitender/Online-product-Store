@@ -6,22 +6,15 @@ import java.util.*;
 import CustomerOperation.CustomerChoice;
 import DataBaseInformation.DbConnection;
 public class CustomerDetails {
-	public  int customerId;
 	
-	
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
 
 	static Scanner sc= new Scanner(System.in);
-	
+	//With This Function Customer can Signup(Switch(case1)) And Login(switch(case2))
 	public static  void sigUpAndLoginCustomer() throws SQLException {
 		Connection con = DbConnection.getConnection();
+		//PreparedStatement ps1 for SignUp
 		PreparedStatement ps1=con.prepareStatement("Insert into customer Values(?,?,?,?,?,?,?)");
+		//PreparedStatement ps2 for Login
 		PreparedStatement ps2=con.prepareStatement("Select * from  customer  where customer_id=? And password=?");
 		
 		while(true) {
@@ -29,8 +22,8 @@ public class CustomerDetails {
 			System.out.println("\t1.SinnUp\n\t2.Login");
 			int choice= Integer.parseInt(sc.nextLine());
 			switch(choice) {
-			
-			case 1:
+	//For SignUp Customer		
+	case 1:
 		System.out.println("Enter the Customer Id");
 		int custumerId= Integer.parseInt(sc.nextLine());
 		System.out.println("Enter the customer First Name :");
@@ -62,17 +55,21 @@ public class CustomerDetails {
 			System.out.println("Failed to SignUp Please Try Again Later!!");
 		}
 		break;
-			case 2:
-				System.out.println("Enter the customerId");
+	//For Login Customer	
+	case 2:
+				System.out.println("Enter the customerId/email");
 				int customerId= Integer.parseInt(sc.nextLine());
 				System.out.println("Enter the Password !!");
 				String customerPassword= sc.nextLine();
+				
 				//Loading Data
 				ps2.setInt(1, customerId);
 				ps2.setString(2, customerPassword);
 				k=ps2.executeUpdate();
 				if(k>0) {
 					System.out.println("****User Login Successfully****");
+					
+					// With the help of this function customer can Perform Customer functionality
 					CustomerChoice.customerChoice(customerId);
 				}
 				else {
