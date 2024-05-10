@@ -24,10 +24,10 @@ public class CustomerChoice {
 			PlaceOrder.getorder(customerId);
 			break;
 		case 4:
-			System.out.println(" In process");
+			CancelOrder.cancelOrder(customerId);
 			break;
 		case 5:
-			System.out.println(" In process");
+			OrderHistory.viewOrderHistory(customerId);
 			break;
 		case 6:
 			System.out.println("LogOff Successfully");

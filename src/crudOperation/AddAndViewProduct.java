@@ -45,7 +45,7 @@ public class AddAndViewProduct {
 	
 	public static void viewProductDetails() throws SQLException, ClassNotFoundException {
 		Connection con= DbConnection.getConnection();
-		PreparedStatement ps1= con.prepareStatement("Select * from ProductDetails");
+		PreparedStatement ps1= con.prepareStatement("Select * from ProductDetails order by product_id ASC");
 		PreparedStatement ps2= con.prepareStatement("Select * from ProductDetails where product_id=?");
 		PreparedStatement ps3= con.prepareStatement("Select * from ProductDetails where Upper(product_name)=?");
 		PreparedStatement ps4= con.prepareStatement("Select * from ProductDetails where product_price=?");
@@ -83,6 +83,7 @@ public class AddAndViewProduct {
 				 String productId= sc.nextLine();
 				 ps2.setString(1, productId);
 				rs= ps2.executeQuery();
+			
 			metaData=	rs.getMetaData();
 			columnCount= metaData.getColumnCount();
 			for(int i=1;i<=columnCount;i++) {
@@ -96,6 +97,7 @@ public class AddAndViewProduct {
 					System.out.println();
 					
 				}
+			
 				break;
 			case 3:
 				System.out.println("Enter the Product Name ");
